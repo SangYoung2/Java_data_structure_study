@@ -1,6 +1,4 @@
-package Lesson1;
-
-import java.util.Scanner;
+package Chapter1.Lesson1;
 
 public class Code1 {
     static int num;
