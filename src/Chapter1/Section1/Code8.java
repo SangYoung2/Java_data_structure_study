@@ -1,4 +1,4 @@
-package Chapter1.Lesson1;
+package Chapter1.Section1;
 
 public class Code8 {
     public static void main(String[] args) {

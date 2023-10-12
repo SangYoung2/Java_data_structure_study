@@ -1,4 +1,4 @@
-package Chapter1.Lesson1;
+package Chapter1.Section1;
 
 public class Code1 {
     static int num;
