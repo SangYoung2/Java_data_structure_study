@@ -11,11 +11,11 @@ public class Code2 {
     public static void main(String[] args) {
 
         try {
-            Scanner input = new Scanner(new File("input.txt"));
+            Scanner inputFile = new Scanner(new File("H:\\코리아IT\\Spring_boot\\Java_data_structure_study\\src\\input.txt"));
 
-            while (input.hasNext()) {
-                String nm = input.next();
-                String num = input.next();
+            while (inputFile.hasNext()) { // inputFile 안에 있는 데이터를 가져와서 members 배열 안에 저장한다.
+                String nm = inputFile.next();
+                String num = inputFile.next();
 
                 members[n] = new Person1();
                 members[n].name = nm;
@@ -23,12 +23,12 @@ public class Code2 {
                 n++;
             }
 
-            input.close();
+            inputFile.close();
         } catch (FileNotFoundException e) {
             System.out.println("No data file");
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { // members안에 있는 데이터를 출력
             System.out.println(members[i].name + ": " + members[i].number);
         }
 
