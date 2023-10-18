@@ -81,7 +81,6 @@ public class Code5 {
             printTerm (poly.terms[i]);
             System.out.println("+");
         }
-        System.out.println();
     }
 
     private static void printTerm(Term term) {
@@ -90,7 +89,7 @@ public class Code5 {
 
     private static void addTerm(Polynomial poly, int c, int e) {
         int index = findTerm(poly, e);
-        if(index == -1) {
+        if(index != -1) {
             poly.terms[index].coef += c;
         }
         else {
