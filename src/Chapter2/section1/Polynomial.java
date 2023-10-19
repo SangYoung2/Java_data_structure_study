@@ -1,4 +1,4 @@
-package Chapter2.Section1;
+package Chapter2.section1;
 
 public class Polynomial {
     public char name; // 다항식의 이름
