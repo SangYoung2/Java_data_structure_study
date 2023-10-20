@@ -17,13 +17,7 @@ public class Code8 {
             Scanner inFile = new Scanner(new File("H:\\코리아IT\\Spring_boot\\Java_data_structure_study\\src\\pointdata.txt"));
             while (inFile.hasNext()) {
 
-                rects[n] = new MyRectangle2();
-                rects[n].lu = new MyPoint2(); // lu (left upper)는 MyRectangle안에 있지만 참조변수 이기 때문에 new로 새로운 객체라는 것을 선언 해야만 한다
-                
-                rects[n].lu.x = inFile.nextInt();
-                rects[n].lu.y = inFile.nextInt();
-                rects[n].width = inFile.nextInt();
-                rects[n].height = inFile.nextInt();
+                rects[n] = new MyRectangle2(inFile.nextInt(), inFile.nextInt(), inFile.nextInt(), inFile.nextInt());
 
                 n++;
 
