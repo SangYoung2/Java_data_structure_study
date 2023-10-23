@@ -28,7 +28,7 @@ public class OrthoPolygon {
         OrthoLine arrow = new OrthoLine(p, new MyPoint2( maxX()+1, p.y));
         int count = 0;
         for (int i = 0; i < n; i++) {
-            OrthoLine edge = new OrthoLine(vertices[i], vertices[ (i+1) & n]); // 마지막 꼭지점은 처음 꼭지점과 연결 되어야 함으로 [(i+1) & n] 로 작성하여 0으로 만든다.
+            OrthoLine edge = new OrthoLine(vertices[i], vertices[(i+1) / n]); // 마지막 꼭지점은 처음 꼭지점과 연결 되어야 함으로 [(i+1) & n] 로 작성하여 0으로 만든다.
             if (arrow.intersects(edge)) {
                 count++;
             }

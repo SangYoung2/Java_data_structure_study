@@ -14,13 +14,17 @@ public class Code9 {
         try {
             Scanner inputFile = new Scanner(new File("H:\\코리아IT\\Spring_boot\\Java_data_structure_study\\src\\data.txt"));
             int n = inputFile.nextInt();
-            System.out.println(n);
             OrthoPolygon thePolygon = new OrthoPolygon(n);
             for (int i = 0; i < n; i++) {
-                thePolygon.addVertex(inputFile.nextInt(), inputFile.nextInt());
-                System.out.println(inputFile.nextInt() + "," + inputFile.nextInt());
+                int a = inputFile.nextInt();
+                int b = inputFile.nextInt();
+                thePolygon.addVertex(a,b);
             }
             MyPoint2 thePoint = new MyPoint2(inputFile.nextInt(), inputFile.nextInt());
+            for (int i = 0; i < n; i++) {
+                System.out.println(thePolygon.vertices[i].x + ", " + thePolygon.vertices[i].y);
+            }
+            System.out.println(thePoint.x + ", " + thePoint.y);
             inputFile.close();
             if(thePolygon.contains(thePoint)){
                 System.out.println("Yes");
