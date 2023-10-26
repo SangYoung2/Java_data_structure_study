@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Code1 {
     // section2의 code7안에 있는 코드들에서 main함수를 제외하고 static을 지워보기
 
-    Polynomial3[] polys = new Polynomial3[100];
-    int n = 0;
+    private Polynomial3[] polys = new Polynomial3[100];
+    private int n = 0;
     
     public void processCommand(){
         Scanner input = new Scanner(System.in);
@@ -65,9 +65,9 @@ public class Code1 {
         app.processCommand();
     }
 
-    public int find(char name) {
+    private int find(char name) {
         for (int i = 0; i < n; i++) {
-            if (polys[i].name == name) {
+            if (polys[i].getName() == name) {
                 return i;
             }
         }

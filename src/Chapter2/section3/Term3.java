@@ -3,8 +3,17 @@ package Chapter2.section3;
 public class Term3 {
     // 메서드 또한 관련있는 정보들을 모아두는 class에 모아두면 응집도는 높이면서 결합도는 낮출 수 있다.
     // Term2객체의 정적 속성 (데이터)
-    public int coef; // 계수
-    public int expo; // 지수
+    private int coef; // 계수
+
+    public int getCoef() {
+        return coef;
+    }
+
+    public void setCoef(int coef) {
+        this.coef = coef;
+    }
+
+    private int expo; // 지수
 
     public Term3(int coef, int expo) { // 생성자
         this.coef = coef;

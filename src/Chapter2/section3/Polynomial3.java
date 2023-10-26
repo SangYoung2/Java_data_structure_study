@@ -1,9 +1,9 @@
 package Chapter2.section3;
 
 public class Polynomial3 {
-    public char name; // 다항식의 이름
-    public int nTerms; // 다항식을 구성하는 항의 갯수
-    public Term3[] terms; // 항의 배열
+    private char name; // 다항식의 이름
+    private int nTerms; // 다항식을 구성하는 항의 갯수
+    private Term3[] terms; // 항의 배열
 
     public Polynomial3() {
         nTerms = 0;
@@ -24,6 +24,14 @@ public class Polynomial3 {
         return result;
     }
 
+    public char getName() {
+        return name;
+    }
+
+    public void setName(char name) {
+        this.name = name;
+    }
+
     void printPolynomial(){
         for (int i = 0; i < nTerms; i++) {
             terms[i].printTerm ();
@@ -34,11 +42,11 @@ public class Polynomial3 {
     public void addTerm(int c, int e) {
         int index = findTerm(e);
         if(index != -1) {
-            terms[index].coef += c;
+            terms[index].setCoef(terms[index].getCoef() + c);
         }
         else {
             int i = nTerms-1;
-            while (i >= 0 && terms[i].expo < e) {
+            while (i >= 0 && terms[i].getCoef() < e) {
                 terms[i+1] = terms[i];
                 i--;
             }
@@ -47,9 +55,9 @@ public class Polynomial3 {
         }
     }
 
-    public int findTerm(int e) {
-        for (int i = 0; i < nTerms && terms[i].expo >= e; i++) {
-            if(terms[i].expo == e) {
+    private int findTerm(int e) {
+        for (int i = 0; i < nTerms && terms[i].getCoef() >= e; i++) {
+            if(terms[i].getCoef() == e) {
                 return i;
             }
         }
