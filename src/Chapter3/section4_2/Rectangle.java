@@ -11,12 +11,12 @@ public class Rectangle extends Shape{
     }
 
     @Override
-    public double computerArea() {
+    public double computeArea() {
         return (double) width*height;
     }
 
     @Override
-    public double computerPerimeter() {
+    public double computePerimeter() {
         return 2.0 * (width + height);
     }
 
