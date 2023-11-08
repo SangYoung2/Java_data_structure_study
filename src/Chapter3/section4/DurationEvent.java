@@ -21,4 +21,9 @@ public class DurationEvent extends Event {
                 begin.toString() + " ~ " + end.toString() +
                 '}';
     }
+
+    @Override
+    public MyDate getRepresentativeDate() {
+        return begin;
+    }
 }

@@ -19,4 +19,14 @@ public class DeadlinedEvent extends Event {
                 ", deadline=" + deadline.toString() +
                 '}';
     }
+
+    @Override
+    public MyDate getRepresentativeDate() {
+        return deadline;
+    }
+
+    @Override
+    public int compareTo(Object obj) {
+        return super.compareTo(obj);
+    }
 }

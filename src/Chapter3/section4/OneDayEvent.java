@@ -19,4 +19,9 @@ public class OneDayEvent extends Event {
                 ", date=" + date.toString() +
                 '}';
     }
+
+    @Override
+    public MyDate getRepresentativeDate() {
+        return date;
+    }
 }

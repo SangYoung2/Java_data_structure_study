@@ -1,5 +1,6 @@
 package Chapter3.section4;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Scheduler {
@@ -36,6 +37,9 @@ public class Scheduler {
             else if(command.equals("show")) {
                 handleShow();
             }
+            else if(command.equals("sort")) {
+                Arrays.sort(events, 0, n);
+            }
             else if(command.equals("exit")) {
                 break;
             }
@@ -66,11 +70,32 @@ public class Scheduler {
     }
 
     private void handleAddDeadlinedEvent() {
+        System.out.print("  when: ");
+        String dateString = input.next();
+        MyDate date = parseDataString(dateString);
+        System.out.print("  title: ");
+        String title = input.next();
 
+        DeadlinedEvent ev = new DeadlinedEvent(title, date);
+        System.out.println(ev.toString());
+        addProgram(ev);
+        events[n++] = ev; // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
     }
 
     private void handleAddDurationEvent() {
+        System.out.print("  begin: ");
+        String begin = input.next();
+        MyDate beginDate = parseDataString(begin);
+        System.out.print("  end: ");
+        String end = input.next();
+        MyDate endDate = parseDataString(end);
+        System.out.print("  title: ");
+        String title = input.next();
 
+        DurationEvent ev = new DurationEvent(title, beginDate, endDate);
+        System.out.println(ev.toString());
+        addProgram(ev);
+        events[n++] = ev; // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
     }
 
     private void handleAddOneDayEvent() {
