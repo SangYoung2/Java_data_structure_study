@@ -1,7 +1,6 @@
 package Chapter3.section4;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Scheduler {
 
@@ -9,9 +8,10 @@ public class Scheduler {
     oneday, duration, deadline 세가지의 이벤트에 공통 상위 클래스로 Event를 생성하여 extends(상속) 하여
     event객체의 list로 생성하여 각 칸마다 Event를 상속받고있는 다른 타입의 클래스들을 Event배열 안에 넣을 수 있다.
      */
-    private int capacity = 10;
-    public Event[] events = new Event[10];
-    public int n = 0;
+//    private int capacity = 10;
+    public ArrayList<Event> events = new ArrayList<>();
+    //    public Event[] events = new Event[10];
+//    public int n = 0;
     private Scanner input;
 
     public void processCommand(){
@@ -38,7 +38,7 @@ public class Scheduler {
                 handleShow();
             }
             else if(command.equals("sort")) {
-                Arrays.sort(events, 0, n);
+                Collections.sort(events); // Collections.sort -> ArrayList를 정렬하기 위해 사용
             }
             else if(command.equals("exit")) {
                 break;
@@ -50,22 +50,23 @@ public class Scheduler {
     private void handleShow() {
         String dateString = input.next();
         MyDate theDate = parseDataString(dateString);
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < events.size(); i++) {
             // test if events[i] is relevant to the date, then print it (events 배열안에 dataString 과 겹치는 부분이 있는지 검사, 있으면 출력)
             /*
             event배열 안에있는 객체들은 oneDay와 같은 event클래스를 extends하고 있는 객체들이 들어있지만,
             컴파일러는 그것을 알지 못하기에 event클래스 안에 isRelevant라는 메서드가 존재 하지않기에 오류가 발생
             그렇기에 event클래스 안에 isRelevant라는 추상메서드를 생성
             */
-            if(events[i].isRelevant(theDate)){
-                System.out.println(events[i].toString());
+            if(events.get(i).isRelevant(theDate)){
+                System.out.println(events.get(i).toString());
             }
         }
     }
 
     private void handleList() { // 등록되어 있는 모든 event를 화면에 출력
-        for (int i = 0; i < n; i++) {
-            System.out.println("     " + events[i].toString()); // dynamic binding
+//        for (int i = 0; i < events.size(); i++)
+        for(Event ev : events) { // enhanced for loop -> events배열 안에 있는 객체들을 ev라는 객체로 만들어서 반복문 안에서 사용
+            System.out.println("     " + ev.toString()); // dynamic binding
         }
     }
 
@@ -79,7 +80,7 @@ public class Scheduler {
         DeadlinedEvent ev = new DeadlinedEvent(title, date);
         System.out.println(ev.toString());
         addProgram(ev);
-        events[n++] = ev; // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
+        events.add(ev); // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
     }
 
     private void handleAddDurationEvent() {
@@ -95,7 +96,7 @@ public class Scheduler {
         DurationEvent ev = new DurationEvent(title, beginDate, endDate);
         System.out.println(ev.toString());
         addProgram(ev);
-        events[n++] = ev; // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
+        events.add(ev); // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
     }
 
     private void handleAddOneDayEvent() {
@@ -108,26 +109,26 @@ public class Scheduler {
         OneDayEvent ev = new OneDayEvent(title, date);
         System.out.println(ev.toString());
         addProgram(ev);
-        events[n++] = ev; // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
+        events.add(ev); // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
 
     }
 
     private void addProgram(Event ev) {
-        if(n >= capacity) { // 배열의 크기가 capacity와 같아지면 배열 재할당을 실행
-            reallocate();
-        }
-        events[n++] = ev; // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
+//        if(n >= capacity) { // 배열의 크기가 capacity와 같아지면 배열 재할당을 실행
+//            reallocate();
+//        }
+        events.add(ev); // events는 Event타입의 객체 이지만 oneDatEvent가 Event의 서브클래스이기에 super클래스인 Event 객체의 배열 안에 넣을 수 있다.
     }
 
     // 배열 재할당(Array Reallocation) - 배열의 크기가 부족할 때 새로운 배열을 만들어 기존 배열의 값을 새로운 배열로 옮겨서 배열의 크기를 늘림
-    private void reallocate(){
-        Event[] tmpArray = new Event[capacity * 2];
-        for (int i = 0; i < n; i++) {
-            tmpArray[i] = events[i];
-        }
-        events = tmpArray;
-        capacity *= 2;
-    }
+//    private void reallocate(){
+//        Event[] tmpArray = new Event[capacity * 2];
+//        for (int i = 0; i < n; i++) {
+//            tmpArray[i] = events[i];
+//        }
+//        events = tmpArray;
+//        capacity *= 2;
+//    }
 
 
     private MyDate parseDataString(String dateString) { // "1995/08/20"
@@ -148,8 +149,8 @@ public class Scheduler {
         Scheduler app = new Scheduler();
         app.processCommand();
     }
-    
-    
 
-     
+
+
+
 }
