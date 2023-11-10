@@ -10,7 +10,7 @@ public class Scheduler {
      */
 //    private int capacity = 10;
     public ArrayList<Event> events = new ArrayList<>();
-    //    public Event[] events = new Event[10];
+//    public Event[] events = new Event[10];
 //    public int n = 0;
     private Scanner input;
 
