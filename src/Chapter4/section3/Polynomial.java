@@ -32,25 +32,25 @@ public class Polynomial {
         int index = 0;
         while (p.hasNext()) {
             q = p; // p의 이전 노드
-            p = p.next;
+//            p = p.next;
         }
 
-        if( p != null && p.data.expo == expo) {
-            p.data.coef += coef;
-            if(p.data.coef == 0){ // data의 coef 값과 입력된 coef값을 더했을 때 0이 되면 node를 삭제
-                if(q == null) {
-                    terms.removeFirst();
-                }
-                terms.removeAfter(q);
-            }
-        } else { // add after q
-            Term t = new Term(coef, expo);
-            if(q == null) { // 맨 앞일 경우에는 맨 앞에 추가
-                terms.addFirst(t);
-            }else {
-                terms.addAfter(q, t); // q뒤에 t 객체를 추가
-            }
-        }
+//        if( p != null && p.data.expo == expo) {
+//            p.data.coef += coef;
+//            if(p.data.coef == 0){ // data의 coef 값과 입력된 coef값을 더했을 때 0이 되면 node를 삭제
+//                if(q == null) {
+//                    terms.removeFirst();
+//                }
+//                terms.removeAfter(q);
+//            }
+//        } else { // add after q
+//            Term t = new Term(coef, expo);
+//            if(q == null) { // 맨 앞일 경우에는 맨 앞에 추가
+//                terms.addFirst(t);
+//            }else {
+//                terms.addAfter(q, t); // q뒤에 t 객체를 추가
+//            }
+//        }
     }
 
     public int calc(int x) {
@@ -69,18 +69,18 @@ public class Polynomial {
         return result;
     }
 
-    public String toString(){
-        String result = "";
-        Iterator<Term> iter = terms.iterator();
-//        Node<Term>  p = terms.head;
-//        while (p != null) {
-//            result += ("+" + p.data.toString());
-//            p = p.next;
+//    public String toString(){
+//        String result = "";
+//        Iterator<Term> iter = terms.iterator();
+////        Node<Term>  p = terms.head;
+////        while (p != null) {
+////            result += ("+" + p.data.toString());
+////            p = p.next;
+////        }
+//        while (iter.hasNext()) {
+//            Term t = iter.next();
+//            result += ("+" + t.toString());
 //        }
-        while (iter.hasNext()) {
-            Term t = iter.next();
-            result += ("+" + t.toString());
-        }
-        return result;
-    }
+//        return result;
+//    }
 }
